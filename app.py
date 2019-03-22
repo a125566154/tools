@@ -1,4 +1,5 @@
 import web
+from handle import Handle
 
 urls = (
     '/', 'index',
