@@ -73,7 +73,7 @@ class Token:
     def main(self):
         self.set_token("test")
         token = self.get_token()
-        print token['token']
+        print token[1]
     
 if __name__ == '__main__':
     Token().main()
