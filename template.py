@@ -2,7 +2,7 @@
 # filename: template.py
 import urllib
 
-class Template(obejct):
+class Template(object):
     def __init__(self):
         pass
 
