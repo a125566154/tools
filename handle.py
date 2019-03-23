@@ -54,7 +54,7 @@ class Handle(object):
                 print("event")
                 if recMsg.Event == 'CLICK':
                     if recMsg.Eventkey == 'mpGuide':
-                        content = "编写中，尚未完成"
+                        content = "unfinished"
                         print(content)
                         replyMsg = reply.TextMsg(toUser, fromUser, content)
                         return replyMsg.send()
