@@ -61,10 +61,27 @@ if __name__ == '__main__':
                         "url": "http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433747234&token=&lang=zh_CN"
                     }
                 ]
+            },
+            {
+                "name": "扫码", 
+                "sub_button": [
+                    {
+                        "type": "scancode_waitmsg", 
+                        "name": "扫码带提示", 
+                        "key": "rselfmenu_0_0", 
+                        "sub_button": [ ]
+                    }, 
+                    {
+                        "type": "scancode_push", 
+                        "name": "扫码推事件", 
+                        "key": "rselfmenu_0_1", 
+                        "sub_button": [ ]
+                    }
+                ]
             }
           ]
     }
     """
     accessToken = Basic().get_access_token()
-    #myMenu.delete(accessToken)
+    myMenu.delete(accessToken)
     myMenu.create(postJson, accessToken)
