@@ -4,6 +4,8 @@
 import hashlib
 import reply
 import receive
+import template
+import basic
 import web
 
 class Handle(object):
@@ -55,11 +57,23 @@ class Handle(object):
                 if recMsg.Event == 'CLICK':
                     if recMsg.Eventkey == 'mpGuide':
                         toUser = recMsg.FromUserName
-                        fromUser = recMsg.ToUserName
-                        content = "unfinished"
-                        print(content)
-                        replyMsg = reply.TextMsg(toUser, fromUser, content)
-                        return replyMsg.send()
+                        data = """
+                        {
+                            "touser":"%s",
+                            "template_id":"GVnSlVUMHDAr6uNtd7dJhnUr_Y0qEopR7SGwzyGVpto",
+                            "url":"http://www.mej.cn",         
+                            "data":{
+                                    "first": {
+                                        "value":"恭喜你购买成功！",
+                                        "color":"#173177"
+                                    }
+                            }
+                        }
+                        """ % toUser
+                        token = basic.Basic().get_access_token()
+                        reply_template = template.Template()
+                        reply_template.send(data)
+                        return data
             else:
                 print "暂且不处理"
                 return "success"
