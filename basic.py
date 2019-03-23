@@ -76,4 +76,4 @@ class Token:
         print token
     
 if __name__ == '__main__':
-    Token.main()
+    Token().main()
