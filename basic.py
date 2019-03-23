@@ -20,9 +20,10 @@ class Basic:
         urlResp = json.loads(urlResp.read())                
         self.__accessToken = urlResp['access_token']        
         self.__leftTime = urlResp['expires_in']    
+        Token().set_token(self.__accessToken)
         
     def get_access_token(self): 
-        token = DB.get_token(self.__conn)     
+        token = Token().get_token()     
         if token: 
             return token
         else:           
@@ -71,9 +72,12 @@ class Token:
             print("token set")
 
     def main(self):
-        self.set_token("test")
+        #self.set_token("test")
         token = self.get_token()
-        print token[1]
+        if token:
+            print token[1]
+        else:
+            print("No token retrieved")
     
 if __name__ == '__main__':
     Token().main()
