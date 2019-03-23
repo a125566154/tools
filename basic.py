@@ -60,8 +60,8 @@ class Token:
             print("token selected!")
             row = cur.fetchone()
             if row:
-                print row
-                return row
+                print(row[1])
+                return row[1]
             else:
                 return None
 
