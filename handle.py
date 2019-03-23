@@ -57,6 +57,7 @@ class Handle(object):
                 if recMsg.Event == 'CLICK':
                     if recMsg.Eventkey == 'mpGuide':
                         toUser = recMsg.FromUserName
+                        print(toUser)
                         data = """
                         {
                             "touser":"%s",
@@ -70,6 +71,7 @@ class Handle(object):
                             }
                         }
                         """ % toUser
+                        print(data)
                         token = basic.Basic().get_access_token()
                         reply_template = template.Template()
                         print(reply_template)
