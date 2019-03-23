@@ -24,7 +24,7 @@ class Basic:
     def get_access_token(self): 
         token = Token().get_token()     
         if token: 
-            print("retrieved from database")
+            print("retrieved from database", token)
             return token
         else:          
             self.__real_get_access_token()  
