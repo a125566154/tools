@@ -25,9 +25,11 @@ class Basic:
     def get_access_token(self): 
         token = Token().get_token()     
         if token: 
+            print("retrieved from database")
             return token
-        else:           
-            self.__real_get_access_token()        
+        else:          
+            self.__real_get_access_token()  
+            print("retrived from api",self.__accessToken)       
             return self.__accessToken    
 
     def run(self):        
@@ -80,4 +82,4 @@ class Token:
             print("No token retrieved")
     
 if __name__ == '__main__':
-    Token().main()
+    Basic().get_access_token()
