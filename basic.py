@@ -10,7 +10,6 @@ class Basic:
     def __init__(self):        
         self.__accessToken = ''        
         self.__leftTime = 0   
-        self.__conn = DB.create_connection() 
     
     def __real_get_access_token(self):        
         appId = "wxfc1a67f2d7bccbc7"        
