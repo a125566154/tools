@@ -19,7 +19,7 @@ def parse_xml(web_data):
             #return LocationEvent(xmlData)
         #elif event_type == 'SCAN':
             #return Scan(xmlData)
-    if msg_type == 'text':
+    elif msg_type == 'text':
         return TextMsg(xmlData)
     elif msg_type == 'image':
         return ImageMsg(xmlData)

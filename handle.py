@@ -54,6 +54,8 @@ class Handle(object):
                 print("event")
                 if recMsg.Event == 'CLICK':
                     if recMsg.Eventkey == 'mpGuide':
+                        toUser = recMsg.FromUserName
+                        fromUser = recMsg.ToUserName
                         content = "unfinished"
                         print(content)
                         replyMsg = reply.TextMsg(toUser, fromUser, content)
