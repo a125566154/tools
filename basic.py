@@ -70,9 +70,9 @@ class Token:
             cur.execute("invert into token('token') values(?)",(token))
             print("token set")
 
-    def main():
-        DB.set_token("test")
-        token = DB.get_token()
+    def main(self):
+        set_token("test")
+        token = get_token()
         print token
     
 if __name__ == '__main__':
