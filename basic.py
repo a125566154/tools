@@ -67,7 +67,7 @@ class Token:
         conn = self.create_connection()
         with conn:
             cur = conn.cursor()
-            cur.execute("invert into token('token') values(?)",(token))
+            cur.execute("insert into token('token') values(?)",(token))
             print("token set")
 
     def main(self):
