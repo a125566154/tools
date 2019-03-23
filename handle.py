@@ -53,7 +53,7 @@ class Handle(object):
             if isinstance(recMsg, receive.EventMsg):
                 if recMsg.Event == 'CLICK':
                     if recMsg.Eventkey == 'mpGuide':
-                        content = u"编写中，尚未完成".encode('utf-8')
+                        content = "编写中，尚未完成"
                         replyMsg = reply.TextMsg(toUser, fromUser, content)
                         return replyMsg.send()
             else:
