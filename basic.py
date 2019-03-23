@@ -39,7 +39,7 @@ class Basic:
     
 class Token:
     def __init__(self):
-        __db_file = '/root/tools/scripts/cary_tools_db'
+        self.__db_file = '/root/tools/scripts/cary_tools_db'
 
     def create_connection(self):
         try:
