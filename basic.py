@@ -50,8 +50,8 @@ class Token:
             print(e)
         return None
 
-    def get_token():
-        conn = create_connection()
+    def get_token(self):
+        conn = self.create_connection()
         with conn:
             cur = conn.cursor()
             cur.execute("select * from token")
@@ -63,16 +63,16 @@ class Token:
             else:
                 return None
 
-    def set_token(token):
-        conn = create_connection()
+    def set_token(self, token):
+        conn = self.create_connection()
         with conn:
             cur = conn.cursor()
             cur.execute("invert into token('token') values(?)",(token))
             print("token set")
 
     def main(self):
-        set_token("test")
-        token = get_token()
+        self.set_token("test")
+        token = self.get_token()
         print token
     
 if __name__ == '__main__':
