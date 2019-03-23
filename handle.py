@@ -72,6 +72,7 @@ class Handle(object):
                         """ % toUser
                         token = basic.Basic().get_access_token()
                         reply_template = template.Template()
+                        print(reply_template)
                         reply_template.send(data, token)
                         return data
             else:
