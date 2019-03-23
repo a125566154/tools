@@ -57,21 +57,15 @@ class Handle(object):
                 if recMsg.Event == 'CLICK':
                     if recMsg.Eventkey == 'mpGuide':
                         toUser = recMsg.FromUserName
-                        print(toUser)
                         data = """
                         {
                             "touser":"%s",
                             "template_id":"GVnSlVUMHDAr6uNtd7dJhnUr_Y0qEopR7SGwzyGVpto",
                             "url":"http://www.mej.cn",         
                             "data":{
-                                    "first": {
-                                        "value":"恭喜你购买成功！",
-                                        "color":"#173177"
-                                    }
                             }
                         }
                         """ % toUser
-                        print(data)
                         token = basic.Basic().get_access_token()
                         reply_template = template.Template()
                         print(reply_template)
