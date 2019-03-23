@@ -51,6 +51,7 @@ class Handle(object):
                 else:
                     return reply.Msg().send()
             if isinstance(recMsg, receive.EventMsg):
+                print("event")
                 if recMsg.Event == 'CLICK':
                     if recMsg.Eventkey == 'mpGuide':
                         content = "编写中，尚未完成"
