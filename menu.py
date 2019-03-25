@@ -59,6 +59,11 @@ if __name__ == '__main__':
                         "type": "view",
                         "name": "返回码说明",
                         "url": "http://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433747234&token=&lang=zh_CN"
+                    },
+                    {
+                        "type": "view",
+                        "name": "Cary's Site",
+                        "url": "http://www.cary.ltd"
                     }
                 ]
             },
