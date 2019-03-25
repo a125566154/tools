@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bus Status</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+  <section class="section">
+    <div class="tabs is-centered is-large">
+        <ul>
+          <li class="is-active"><a>Lav</a></li>
+          <li><a>Cary</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <h1>Home to Work</h1>
+        <p id="home"></p>
+        <h1>Work to Home</h1>
+        <p id="work"></p>
+        <a id="refresh" class="button is-primary">刷新</a>
+    </div>
+  </section>
+  <script type="text/javascript">
+    var get_info_home = function(){
+            $.ajax({
+                url : "http://www.shjt.org.cn:8005/bus/TrafficLineXML.aspx?TypeID=3&lineid=011300&stopid=4&direction=1&name=113%E8%B7%AF",
+                success : function(result){
+                    alert(result);
+                    var xml = $(result),
+                    $bus = xml.find("terminal"),
+                    $stopdis = xml.find("stopdis"),
+                    $time = xml.find("time");
+
+                    var str = $bus.text() + "距离静安新格" + ", 还有" + $stopdis.text() + "站" + ", 约" + Math.round(parseInt($time.text())/60) + "分钟";
+
+                    $("#home").html(str)
+                },
+                error : function(xhr, status, error){
+                    $("#home").html("数据异常，请稍后再试")
+                }
+            })
+        };
+
+        var get_info_work = function(){
+            $.ajax({
+                url : "http://www.shjt.org.cn:8005/bus/TrafficLineXML.aspx?TypeID=3&lineid=007600&stopid=11&direction=1&name=76%E8%B7%AF",
+                success : function(result){
+                    var xml = $(result),
+                    $bus = xml.find("terminal"),
+                    $stopdis = xml.find("stopdis"),
+                    $time = xml.find("time");
+
+                    var str = $bus.text() + "距离静安寺" + ", 还有" + $stopdis.text() + "站" + ", 约" + Math.round(parseInt($time.text()/60)) + "分钟";
+
+                    $("#work").html(str)
+                },
+                error : function(xhr, status, error){
+                    $("#work").html("数据异常，请稍后再试")
+                }
+            })
+        };  
+        
+    var get_info = function(){
+        get_info_home();
+        get_info_work()
+    };
+
+    $(function(){
+        $(document).ready(get_info);
+        $("#refresh").on("click",get_info);
+    })
+  </script>
+  </body>
+</html>
