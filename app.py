@@ -1,6 +1,8 @@
 import web
 from handle import Handle
 
+render = web.template.render('views/')
+
 urls = (
     '/', 'index',
     '/wx','Handle',
@@ -8,7 +10,6 @@ urls = (
 
 class index:
     def GET(self):
-        render = web.template.render('views/index')
         return render.index()
 
 if __name__ == "__main__":
