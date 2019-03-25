@@ -8,7 +8,8 @@ urls = (
 
 class index:
     def GET(self):
-        return "Hello, world!"
+        render = web.template.render('views/index')
+        return render.index()
 
 if __name__ == "__main__":
     app = web.application(urls, globals())
