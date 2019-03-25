@@ -41,39 +41,39 @@
   </section>
   <script type="text/javascript">
     var get_info_home = function(home_url){
-            $.ajax({
+            $$.ajax({
                 url : home_url,
                 success : function(result){
-                    var xml = $(result),
-                    $bus = xml.find("terminal"),
-                    $stopdis = xml.find("stopdis"),
-                    $time = xml.find("time");
+                    var xml = $$(result),
+                    $$bus = xml.find("terminal"),
+                    $$stopdis = xml.find("stopdis"),
+                    $$time = xml.find("time");
 
-                    var str = $bus.text() + "距离静安新格" + ", 还有" + $stopdis.text() + "站" + ", 约" + Math.round(parseInt($time.text())/60) + "分钟";
+                    var str = $$bus.text() + "距离静安新格" + ", 还有" + $$stopdis.text() + "站" + ", 约" + Math.round(parseInt($$time.text())/60) + "分钟";
 
-                    $("#home").html(str)
+                    $$("#home").html(str)
                 },
                 error : function(xhr, status, error){
-                    $("#home").html("数据异常，请稍后再试")
+                    $$("#home").html("数据异常，请稍后再试")
                 }
             })
         };
 
         var get_info_work = function(work_url){
-            $.ajax({
+            $$.ajax({
                 url : work_url,
                 success : function(result){
-                    var xml = $(result),
-                    $bus = xml.find("terminal"),
-                    $stopdis = xml.find("stopdis"),
-                    $time = xml.find("time");
+                    var xml = $$(result),
+                    $$bus = xml.find("terminal"),
+                    $$stopdis = xml.find("stopdis"),
+                    $$time = xml.find("time");
 
-                    var str = $bus.text() + "距离静安寺" + ", 还有" + $stopdis.text() + "站" + ", 约" + Math.round(parseInt($time.text()/60)) + "分钟";
+                    var str = $$bus.text() + "距离静安寺" + ", 还有" + $$stopdis.text() + "站" + ", 约" + Math.round(parseInt($$time.text()/60)) + "分钟";
 
-                    $("#work").html(str)
+                    $$("#work").html(str)
                 },
                 error : function(xhr, status, error){
-                    $("#work").html("数据异常，请稍后再试")
+                    $$("#work").html("数据异常，请稍后再试")
                 }
             })
         };  
@@ -91,22 +91,22 @@
         get_info_work(work_url)
     };
 
-    $(function(){
-        $(document).ready(function(){
+    $$(function(){
+        $$(document).ready(function(){
             get_info("lav");
-            $("#refresh").on("click",function(){
-                var view = $("li.is-active>a")[0].getAttribute("id");
+            $$("#refresh").on("click",function(){
+                var view = $$("li.is-active>a")[0].getAttribute("id");
                 get_info(view)
             });
-            $("div.tabs>ul>li").on("click",function(event){
-                var id = $("li.is-active>a")[0].getAttribute("id");
+            $$("div.tabs>ul>li").on("click",function(event){
+                var id = $$("li.is-active>a")[0].getAttribute("id");
                 alert(id);
                 if(id === "cary"){
-                    $("div#cary-view").show();
-                    $("div#lav-view").hide();
+                    $$("div#cary-view").show();
+                    $$("div#lav-view").hide();
                 }else{
-                    $("div#cary-view").hide();
-                    $("div#lav-view").show();
+                    $$("div#cary-view").hide();
+                    $$("div#lav-view").show();
                 }
             })
         });

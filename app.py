@@ -15,7 +15,7 @@ class index:
 
 class Bus:
     def GET(self):
-        return render.index()
+        return render.bus()
 
 if __name__ == "__main__":
     app = web.application(urls, globals())
