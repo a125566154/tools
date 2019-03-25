@@ -10,26 +10,40 @@
   </head>
   <body>
   <section class="section">
-    <div class="tabs is-centered is-large">
+    <!--div class="tabs is-toggle is-centered is-large">
         <ul>
-          <li class="is-active"><a>Lav</a></li>
-          <li><a>Cary</a></li>
+          <li class="is-active"><a id="lav">Lav</a></li>
+          <li><a id="cary">Cary</a></li>
         </ul>
+    </div-->
+    <div id="lav-view" class="tile is-ancestor">
+        <div class="tile is-parent is-vertical notification is-info">
+            <p class="title">Home to Work</h1>
+            <p id="home"></p>
+        </div>
+        <div class="tile is-parent is-vertical notification is-info">
+            <p class="title">Work to Home</h1>
+            <p id="work"></p>
+        </div>
+        <a id="refresh" class="button is-primary tile is-parent is-vertical">刷新</a>
     </div>
-    <div class="container">
-        <h1>Home to Work</h1>
-        <p id="home"></p>
-        <h1>Work to Home</h1>
-        <p id="work"></p>
-        <a id="refresh" class="button is-primary">刷新</a>
+    <div id="cary-view" class="tile is-ancestor" style="display:none">
+        <div class="tile is-parent is-vertical notification is-info">
+            <p class="title">Home to Work</h1>
+            <p id="home"></p>
+        </div>
+        <div class="tile is-parent is-vertical notification is-info">
+            <p class="title">Work to Home</h1>
+            <p id="work"></p>
+        </div>
+        <a id="refresh" class="button is-primary tile is-parent is-vertical">刷新</a>
     </div>
   </section>
   <script type="text/javascript">
-    var get_info_home = function(){
+    var get_info_home = function(home_url){
             $.ajax({
-                url : "http://www.shjt.org.cn:8005/bus/TrafficLineXML.aspx?TypeID=3&lineid=011300&stopid=4&direction=1&name=113%E8%B7%AF",
+                url : home_url,
                 success : function(result){
-                    alert(result);
                     var xml = $(result),
                     $bus = xml.find("terminal"),
                     $stopdis = xml.find("stopdis"),
@@ -45,9 +59,9 @@
             })
         };
 
-        var get_info_work = function(){
+        var get_info_work = function(work_url){
             $.ajax({
-                url : "http://www.shjt.org.cn:8005/bus/TrafficLineXML.aspx?TypeID=3&lineid=007600&stopid=11&direction=1&name=76%E8%B7%AF",
+                url : work_url,
                 success : function(result){
                     var xml = $(result),
                     $bus = xml.find("terminal"),
@@ -64,14 +78,38 @@
             })
         };  
         
-    var get_info = function(){
-        get_info_home();
-        get_info_work()
+    var get_info = function(view){
+        var home_url, work_url;
+        if(view === "lav"){
+            home_url = "http://www.shjt.org.cn:8005/bus/TrafficLineXML.aspx?TypeID=3&lineid=011300&stopid=4&direction=1&name=113%E8%B7%AF"
+            work_url = "http://www.shjt.org.cn:8005/bus/TrafficLineXML.aspx?TypeID=3&lineid=007600&stopid=11&direction=1&name=76%E8%B7%AF"
+        }else{
+            home_url = "http://www.shjt.org.cn:8005/bus/TrafficLineXML.aspx?TypeID=3&lineid=001900&stopid=4&direction=1&name=19%E8%B7%AF"
+            work_url = "http://www.shjt.org.cn:8005/bus/TrafficLineXML.aspx?TypeID=3&lineid=001900&stopid=15&direction=0&name=19%E8%B7%AF"
+        }
+        get_info_home(home_url);
+        get_info_work(work_url)
     };
 
     $(function(){
-        $(document).ready(get_info);
-        $("#refresh").on("click",get_info);
+        $(document).ready(function(){
+            get_info("lav");
+            $("#refresh").on("click",function(){
+                var view = $("li.is-active>a")[0].getAttribute("id");
+                get_info(view)
+            });
+            $("div.tabs>ul>li").on("click",function(event){
+                var id = $("li.is-active>a")[0].getAttribute("id");
+                alert(id);
+                if(id === "cary"){
+                    $("div#cary-view").show();
+                    $("div#lav-view").hide();
+                }else{
+                    $("div#cary-view").hide();
+                    $("div#lav-view").show();
+                }
+            })
+        });
     })
   </script>
   </body>
