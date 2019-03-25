@@ -6,16 +6,16 @@ render = web.template.render('views/')
 urls = (
     '/', 'index',
     '/wx','Handle',
-    '/bus', 'bus',
+    '/bus','Bus',
 )
 
 class index:
     def GET(self):
         return render.index()
 
-class bus:
+class Bus:
     def GET(self):
-        return render.bus()
+        return render.index()
 
 if __name__ == "__main__":
     app = web.application(urls, globals())
