@@ -95,8 +95,7 @@
         $$(document).ready(function(){
             get_info("lav");
             $$("#refresh").on("click",function(){
-                var view = $$("li.is-active>a")[0].getAttribute("id");
-                get_info(view)
+                get_info("lav")
             });
             $$("div.tabs>ul>li").on("click",function(event){
                 var id = $$("li.is-active>a")[0].getAttribute("id");
